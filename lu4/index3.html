@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX</title>
+    <script type="text/javascript">
+        window.onload = function(){
+
+
+            var input = document.getElementById('inp1');
+            console.log('Inside windows.onload');
+            input.onkeydown = getInfo;
+
+        };
+
+        // important function about using online data which can be manipulated for data mining.
+        function getInfo(event){
+            // Clear Existing Data
+
+            // hide the div element.
+            document.getElementById('response').style.display = "none";
+            var div = document.getElementById('response');
+            if (div.children.length > 1) {
+                for (var i = 1 ; i < div.children.length ; i++){
+                    div.removeChild(div.children[i]);
+                }
+            }
+
+            //DOM_VK_RETURN	0x0D (13)	Return/enter key on the main keyboard.
+            if (event.keyCode === 13) {
+                var city = document.getElementById('inp1').value;
+                console.log('starting getInfo');
+                var xhr = new XMLHttpRequest();
+                var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',us';
+                xhr.open('GET', url);
+                xhr.onreadystatechange = function() {
+
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        var obj = JSON.parse(xhr.responseText);
+                        displayWeatherData(obj);
+                        //document.getElementById('response').innerHTML = xhr.responseText;
+                        console.log(obj);
+                    }
+                };
+                xhr.send();
+            }
+
+
+        }
+
+        function displayWeatherData(obj){
+
+            // populate the descripton and icon.
+            var div = document.getElementById('response');
+
+            // Create a span element
+            var span = document.createElement('span');
+            span.innerHTML = obj.weather[0].description;
+            div.appendChild(span);
+
+            // create the image element
+            var img_src = 'http://openweathermap.org/img/w/' + obj.weather[0].icon + '.png';
+            var img = document.createElement('img');
+            img.src = img_src;
+            div.appendChild(img);
+            document.getElementById('response').style.display = "block";
+
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>AJAX response</h1>
+
+    <input type="text" id="inp1" />
+    <div id="response">
+        <h1> Weather Forecast</h1>
+
+    </div>
+</div>
+</body>
+</html>
+

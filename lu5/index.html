@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="javascript/jquery.js"></script>
+    <style type="text/css">
+        span.blue{
+            background-color: green;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+
+
+        });
+
+        function example4(){
+
+            var img = $('<img>', {
+                src:'http://codecrew.co/wp-content/uploads/2013/06/html-css.jpg',
+                height: '300'
+            });
+
+            $(document.body).append(img);
+            img.wrap('<div></div>'); // You don't need to do $img here because img is a js object.
+        }
+
+        function example3(){
+            var img = $('<img>', {
+                src:'http://codecrew.co/wp-content/uploads/2013/06/html-css.jpg',
+                width: '300'
+            });
+            $(document.body).append(img);
+        }
+
+        function example2(){
+
+            var div  = $('<div>').css({backgroundColor:'green'});
+            div.html("new div");
+            document.body.appendChild(div[0]); // because div is a jquery object.
+            $(document.body).append(div);
+
+        }
+
+        function example1() {
+            // var jdiv = $('.child', document.body.firstElementChild).css({color:'red'}); // jdiv becomes a javscript array at this point.
+            // var jdiv = $('.child', '.div1').css({color:'red'}); // This is the same as the above statement only thing is that when you
+            // pass .div1  then it will modify the children of div1
+            var jdiv = $('.child[style]', '.div1').css({color:'red'});
+
+            //jdiv[1].innerHTML = 'Hello world from jquery'; // modify like a dom element.. it is a html node. - host object.
+        }
+    </script>
+</head>
+<body>
+<div class="div1">
+    <input type="text" id="inp" value="new window"/>
+    <a href="http://www.google.com" id="google">google</a>
+    <span class="child" style="">Socrates</span>
+    <span class="child">Plato</span>
+    <span class="child">Archimedes</span>
+</div>
+
+<span class="child" style="">Aristotle</span>
+</body>
+</html>

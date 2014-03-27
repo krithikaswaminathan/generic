@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript">
+        window.onload = function(){
+
+            var start = new Date();
+            var now;
+
+            var xhr = new XMLHttpRequest(); // creating a new object and getting some info about the object
+            console.log (xhr);
+            xhr.open('GET', 'http://uitr.herokuapp.com/customer/1');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+
+            xhr.onreadystatechange = function(){
+                console.log(xhr.readyState);
+
+                if (xhr.readyState === 4 ) {
+                    if (xhr.status === 200){
+                        console.log(xhr.responseText);
+                        var obj = JSON.parse(xhr.responseText);
+                        document.getElementById('response').innerHTML = 'check console ...' ;
+                        //   document.getElementById('response').innerHTML = xhr.responseText ;
+                        console.log (obj);
+                    }
+                    else {
+                        document.getElementById('response').innerHTML = 'Status: ' +
+                                xhr.status + '<br/>Response Text: ' + xhr.responseText;
+                    }
+                }
+            }
+            xhr.send();
+        }
+    </script>
+
+</head>
+<body>
+<div class="container">
+    <h1> Ajax response</h1>
+    <div id="response"></div>
+    <input type="text" id="inp1"/>
+</div>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index-4</title>
+    <script type="text/javascript">
+        window.onload = function(){
+
+            // DIV element
+           /* var div = document.createElement('div');
+            div.id = "mydiv";
+            div.className = "myclass";
+            div.style.border = "1px solid red";
+
+            // SPAN, UL and LI elements
+            var span = document.createElement('span');
+            var ul = document.createElement('ul');
+            var li1 = document.createElement('li');
+            li1.innerHTML = 'Krithika';
+            var li2 = document.createElement('li');
+            li2.innerHTML = 'Foram';
+            var li3 = document.createElement('li');
+            li3.innerHTML = 'Shweta';
+
+            ul.appendChild(li1);
+            ul.appendChild(li2);
+            ul.appendChild(li3);
+            span.appendChild(ul);
+            div.appendChild(span);
+            document.body.appendChild(div);
+
+            // for loop
+           for (var i = 0, len = div.childNodes.length; i < len ; i++ ){
+                console.dir(div.childNodes[i]);
+                console.dir(div.attributes['id']); // get the id attributes.
+            }
+           // changeHeaders();
+           // insertRowElement();*/
+            //showEvent();
+           // captureEventBubbling();
+            testInterval();
+
+        };
+
+        function testInterval(){
+
+        }
+
+        function stopDefaultAction(event){
+            event.preventDefault();
+        }
+        function showEvent(){
+
+            // list an event object
+            var div = document.body.firstElementChild;
+            var span = div.firstElementChild;
+            var btn = span.firstElementChild;
+        }
+
+        /* Problem statement - HW
+            Upon clicking the "Fires Event" button, only the div should get the a back ground color of green.  Nothing else should happen.
+            Register a handler for button.  But it should not be fired.  Keep the code exactly the same and add extra code to div function
+            to work the way you want it.
+
+            Do research on what happens if you cannot use preventDefault.  We can use a return False statement on the event listener and then we
+            can get by without using preventDefault();
+        */
+
+
+        // function
+        function captureEventBubbling() {
+
+            // list an event object
+            var div = document.body.firstElementChild;
+            var span = div.firstElementChild;
+            var btn = span.firstElementChild;
+
+            // specifies bubbling phase
+            /*
+            div.onclick = clickHandler;
+            span.onclick = clickHandler;
+            btn.onclick = clickHandler;
+            */
+
+            //specifies capturing phase
+            div.addEventListener('click', clickHandler_capture,true);
+            span.addEventListener('click', stopDefaultAction, false); // Does it matter if it is false here the last value?
+            btn.addEventListener('click', stopDefaultAction, false); // same as above.
+
+            //because if it is set to true here as well, capturing is set to true,
+            // order matters.  Each will turn both yellow and green right after one
+            // another.
+            div.addEventListener('click', clickHandler, false);
+            span.addEventListener('click', clickHandler, false);
+            btn.addEventListener('click', clickHandler, false);
+
+
+            function clickHandler(event){
+                var element = this; // 'this' refers to the Window object.
+                //var element = event.target;
+                element.style.backgroundColor = 'yellow';
+                alert(element);
+            }
+
+            function clickHandler_capture(event){
+                var element = this; // 'this' refers to the Window object.
+                //var element = event.target;
+                element.style.backgroundColor = 'green';
+                alert(element);
+            }
+
+
+        }
+
+/*
+        // function
+        function changeHeaders(){
+            var btn = document.getElementById('btn');
+            var table = document.getElementById('table1');
+
+            btn.onclick = function() {
+
+
+               // An other way to store the tr
+                var tr = table.children[1].firstElementChild;
+                var length = table.children[1].firstElementChild.children.length; // should be 3.
+
+
+                if (btn.innerHTML == "Edit Headings") {
+                    btn.innerHTML = "Done Editing";
+
+                   for (var i=0; i < length ; i ++){
+                        table.children[1].firstElementChild.children[i].setAttribute('contentEditable', 'true');
+                   }
+
+                } else{
+                    btn.innerHTML = "Edit Headings";
+                    for (var i=0; i < length ; i ++){
+                        table.children[1].firstElementChild.children[i].removeAttribute('contentEditable');
+                    }
+               }
+            };
+        }
+
+        function insertRowElement(){
+            // inserts a tr element before the last element
+
+            var tbody = document.getElementById('table1').children[2];
+            var info = ['2.5', 'Mishra', '...'];
+
+            // create a table row
+            var tr = document.createElement('tr');
+            tbody.insertBefore(tr, tbody.lastElementChild); // tbody.insertBefore(tr, tbody.lastElementChild)
+
+            // use a for each loop for every element in the array.
+            // info is the name of hte array and you call forEach on an array always.
+            info.forEach(loop);
+
+            function loop(elem){
+                var td = document.createElement('td');
+                td.innerHTML = elem;
+                tr.appendChild(td);
+            }
+        }
+*/
+    </script>
+</head>
+<body style="padding: 1em;">
+    <div style="padding: 1em; background-color: #333">
+        <span style="padding: 1em; background-color: #888; display: block">
+            <button style="padding: 1em; background-color: #ccc">
+                Fires Event
+            </button>
+        </span>
+    </div>
+    <span class="timer" style="position: fixed; bottom: 0; right: 0; background-color: rgba(255,255,255,0.3);">00:00:00</span>
+
+<!--
+    <div id="mydiv" class="myclass" style="border:1px solid red">
+        <span>
+            <ul>
+                <li>Krithika</li>
+                <li>Foram</li>
+                <li>Shweta</li>
+            </ul>
+        </span>
+    </div>
+
+    <button id="btn">Edit Headings</button>
+    <table id="table1">
+        <caption>Customer Information</caption>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            <tr>
+                <td>1</td>
+                <td>Krithika</td>
+                <td>...</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Foram</td>
+                <td>...</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Shweta</td>
+                <td>...</td>
+            </tr>
+        </tbody>
+    </table>
+-->
+</body>
+</html>

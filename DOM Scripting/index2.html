@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript">
+        // Write the script to create the following div structure
+        // Append it to the body (You will see the information twice)
+        // one because it is in html, 2 because u will create it
+        // ping me if ui get stuck/ Im releasing control now.
+        window.onload = function(){
+            var div = document.createElement('div');
+            var span = document.createElement('span');
+            var ul = document.createElement('ul');
+            var li1 = document.createElement('li');
+            li1.innerHTML = 'Alabama';
+            var li2 = document.createElement('li');
+            li2.innerHTML = 'California'; // innerHTML is a property not a method
+            // So invoking the property will give an error. Please modify and run. RCN
+            var li3 = document.createElement('li');
+            li3.innerHTML = 'Washington';
+
+            // You dont need document.ul; Just ul will do. You have already
+            // declared var. So remove it.
+            // body is a special case. You are not creating it.
+            // You cannot add 3 elements. You can only enter 1
+            ul.appendChild(li1);
+            ul.appendChild(li2);
+            ul.appendChild(li3);
+            span.appendChild(ul);
+            div.appendChild(span);
+            document.body.appendChild(div);
+
+        };
+    </script>
+</head>
+<body>
+    <div>
+        <span>
+            <ul>
+                <li>Alabama</li>
+                <li>California</li>
+                <li>Washington</li>
+            </ul>
+        </span>
+    </div>
+
+</body>
+</html>

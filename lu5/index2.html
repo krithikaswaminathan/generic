@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="javascript/jquery.js"></script>
+    <style type="text/css">
+        span.blue{
+            background-color: green;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            // create the first div.
+            var div  = $('<div>').addClass("div 1");
+            $(document.body).append(div);
+            console.log(div);
+
+            // prepend the next span.
+            var span = $('<span>');
+            span.html('span1');
+            $(document.body).prepend(span);
+
+            // before the first div.
+            var div2 = $('<div>').addClass("div 2");
+            $('.div').before(div2);
+
+            //after span2
+            var span2 = $('<span>');
+            span2.html('span2');
+            $('.span').after(span2);
+
+
+        });
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

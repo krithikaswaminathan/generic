@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>County Info</title>
+    <script type="text/javascript" src= "js/state.js"></script>
+    <style type="text/css">
+        span.blue{
+            background-color: green;
+        }
+    </style>
+    <script type="text/javascript">
+       window.onload = function (){
+
+           cal_county.forEach(
+               function(elem){
+                   // Call a function here.
+                   document.body.appendChild(createCounty(elem));
+               }
+           );
+
+       };
+
+        function createCounty(county){
+
+            // create the first div.
+            var div = document.createElement('div');
+            div.className = 'county';
+
+            // create the first span
+            var spanOne = document.createElement('span');
+            spanOne.className = 'countyName';
+            spanOne.innerHTML = county.county_name;
+            div.appendChild(spanOne);
+
+            // create the second span
+            var spanTwo = document.createElement('span');
+            spanTwo.className = 'mapLink';
+            var a = document.createElement('a');
+            a.href = 'http://www.google.com/maps/@' + county.primary_latitude + ',' + county.primary_longitude + ',14z';
+            a.target ='_blank';
+            a.innerHTML = 'Google Maps';
+            spanTwo.appendChild(a);
+            div.appendChild(spanTwo);
+
+            // Create the third span
+            var spanThree = document.createElement('span');
+            spanTwo.className = 'weatherLink';
+            var a = document.createElement('a');
+            a.href = 'http://api.openweathermap.org/data/2.5/weather?lat=' + county.primary_latitude + '&lon=' + county.primary_longitude + '14z';
+            a.target ='_blank';
+            a.innerHTML = 'Open Weather';
+            spanTwo.appendChild(a);
+            div.appendChild(spanThree);
+
+            return div;
+        }
+
+    </script>
+
+
+
+</head>
+<body>
+<div class="container">
+
+</div>
+</body>
+</html>

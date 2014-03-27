@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HomeWork</title>
+    <script type="text/javascript">
+
+        var numRequests = 0;
+        var inter = setInterval(runAjaxCall(inervalId, counter), 100);
+
+        function runAjaxCall(inter, counter){
+            console.log("inside runAjax Call");
+
+            var start = new Date();
+            var now;
+
+            var tbody = document.getElementById('tbody')
+            var tr = document.createElement('tr'); // Create the tr element.
+            tbody.appendChild(tr);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://uitr.herokuapp.com/customer/1');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            //xhr.setRequestHeader('Accept', 'application/json') ;
+
+            xhr.onreadystatechange = function(){
+
+                console.log(xhr.readyState);
+                switch (xhr.readyState) {
+                    case 0 : console.log('open() has not been called yet');
+                        now = new Date();
+                        var td = document.createElement('td');
+                        td.innerHTML = (now - start);
+                        tr.appendChild(td);
+                        break;
+                    case 1 : console.log('send() has not been called yet');
+                        now = new Date();
+                        var td = document.createElement('td');
+                        td.innerHTML = (now - start);
+                        tr.appendChild(td);
+                        break;
+                    case 2 : console.log('send() has been called and headers and status are avialable');
+                        now = new Date();
+                        var td = document.createElement('td');
+                        td.innerHTML = (now - start);
+                        tr.appendChild(td);
+                        break;
+                    case 3 : console.log('Downloading: responseText holds partial data.');
+                        now = new Date();
+                        var td = document.createElement('td');
+                        td.innerHTML = (now - start);
+                        tr.appendChild(td);
+                        break;
+                    case 4: console.log('Done,  The operation is complete');
+                        now = new Date();
+                        var td = document.createElement('td');
+                        td.innerHTML = (now - start);
+                        tr.appendChild(td);
+                        break;
+                    default: console.log('Undefined.');
+                        now = new Date();
+                        var td = document.createElement('td');
+                        td.innerHTML = (now - start);
+                        tr.appendChild(td);
+                        break;
+                }
+
+
+            }
+            xhr.send();
+
+        }
+
+
+
+    </script>
+</head>
+<body>
+<table id="table1">
+    <caption>Request headers response time for various status codes</caption>
+    <thead>
+        <tr>
+            <th>Request-Id</th>
+            <th>Request-Time</th>
+            <th>   0   </th>
+            <th>   1   </th>
+            <th>   2   </th>
+            <th>   3   </th>
+            <th>   4   </th>
+        </tr>
+    </thead>
+
+    <tbody id="tbody">
+
+    </tbody>
+</table>
+</body>
+</html>

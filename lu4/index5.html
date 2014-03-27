@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <title>County Info</title>
+    <script type="text/javascript" src= "js/state.js"></script>
+    <style type="text/css">
+        .county {
+            padding: 1em;
+            margin: 1em;
+            border: 1px solid red;
+        }
+        .property_span1 {
+            display: inline-block;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #7F2F12;
+            font-size: 0.75em;
+            margin-right: 0.4em;
+        }
+
+        .property_span2 {
+            display: inline-block;
+            font-family: Arial;
+            padding: .15em 0;
+            color: #401809;
+            font-size: 1em;
+        }
+
+        .property_span {
+            display: inline-block;
+            background-color: #FF5F23;
+            padding: .65em 1em;
+            margin: 0.25em ;
+            border-radius: 0.4em;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function(){
+            cal_county.forEach(function(elem){
+                var div = document.createElement('div');
+
+                for (var prop in elem){
+
+                    var span = document.createElement('span');
+
+                    var span1 = document.createElement('span');
+                    span1.innerHTML = prop ;
+                    span1.className = 'property_span1';
+
+                    var span2 = document.createElement('span');
+                    span2.innerHTML =  elem[prop];
+                    span2.className = 'property_span2';
+
+                    span.className = 'property_span';
+                    span.appendChild(span1);
+                    span.appendChild(span2);
+
+                    div.appendChild(span);
+                }
+
+                div.className = 'county' ;
+                document.body.appendChild(div);
+            });
+        };
+    </script>
+
+
+
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>setTimeout</title>
+</head>
+<script type="text/javascript">
+    window.onload = function(){
+        callTimeout();
+        //ObjFunc();
+    };
+
+        // Modify the number object to get prototype inheritance available in our class.
+        Number.prototype.krithika_formatTwoDigits = function(){
+            var x = this; // always is a refers to an object.  x is an object with the object related methods.
+
+            if (x < 10)
+                return ("0" + x);
+            else
+                return x;
+        }
+
+        function callTimeout(){
+
+        var span = document.getElementsByClassName('timer')[0]; // becuase it is a node list and we need the first node.
+
+        span.onclick = function () {
+            span.setAttribute('contentEditable', 'true');
+
+        }
+
+        function showTime(){
+
+            var date =  new Date();
+            var seconds = date.getSeconds();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+
+
+            //minutes = (minutes < 10) ? (minutes = "0"+minutes) : minutes;
+            //seconds = (seconds < 10) ? (seconds = "0"+seconds) : seconds;
+            //hours = (hours < 10) ? (hours = "0"+hours) : hours;
+            hours = hours.krithika_formatTwoDigits();
+            minutes = minutes.krithika_formatTwoDigits();
+            seconds = seconds.krithika_formatTwoDigits();
+            span.innerHTML = hours + ":" + minutes + ":" + seconds ;
+        }
+        setInterval(showTime, 100);
+
+    }
+    function ObjFunc() {
+
+        var obj = {};
+        Object.prototype.hello = function() {
+            console.log("Hello");
+        }
+
+        obj.hello(); // Travels up the prototype chain to get the hello method.
+
+    }
+
+
+</script>
+
+<body>
+<span class="timer"
+      style="position: fixed;
+             bottom: 0;
+             right: 0;
+             background-color: rgba(4,38,3,0.8);
+             color:#fff;
+             cursor: pointer;
+             letter-spacing: 0.2em;">
+    00:00:00
+</span>
+
+</body>
+</html>

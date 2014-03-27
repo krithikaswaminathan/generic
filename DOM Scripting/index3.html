@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attributes and Classes</title>
+    <style type="text/css">
+        span.borderRed {
+            border: 1px solid red;
+        }
+    </style>
+    <script type="text/javascript">
+        // Create the following structure. In case you are not sure how to apply
+        // the id and class properties, google it :)
+        // RCN
+        window.onload = function(){
+
+            // DIV element
+            var div = document.createElement('div');
+            div.id = "myDiv";
+            div.innerHTML = "This is the base div";
+            div.style.color = "indianred";
+            div.style.backgroundColor = "blue";
+            div.style.border = "1px solid green";
+
+
+            // SPAN element
+            var span = document.createElement('span');
+            span.className = "borderRed";
+            span.style.fontFamily = "Avenir";
+            span.style.padding = "0.5em";
+            var ul = document.createElement('ul');
+            var li1 = document.createElement('li');
+            li1.innerHTML = 'Alabama';
+            var li2 = document.createElement('li');
+            li2.innerHTML = 'California';
+            var li3 = document.createElement('li');
+            li3.innerHTML = 'Washington';
+            li3.style.fontWeight = "bold";
+
+            ul.appendChild(li1);
+            ul.appendChild(li2);
+            ul.appendChild(li3);
+            span.appendChild(ul);
+            div.appendChild(span);
+            document.body.appendChild(div);
+
+            var title = document.createElement('head');
+            head.innerHTML = "Attribute and Classes";
+            document.head.appendChild(title); // Do we have to do this?
+        };
+
+    </script>
+</head>
+<body>
+    <div id="myDiv" style="color: indianred; background-color: blue; border: 1px solid green;" >
+        This is the base div
+        <span class="borderRed" style="font-family: Avenir; padding: 0.5em;">
+            <ul>
+                <li>Alabama</li>
+                <li>California</li>
+                <li style="font-weight: bold;">Washington</li>
+            </ul>
+        </span>
+    </div>
+
+</body>
+</html>

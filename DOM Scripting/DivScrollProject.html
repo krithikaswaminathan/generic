@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        #scroller{
+            position: fixed;
+            right: 0
+        }
+        div#scroller > div {
+            height: 1em;
+            width: 1em;
+            border-radius: 1em;
+        }
+    </style>
+    <script type="text/javascript">
+
+        window.onload = function(){
+
+            var heights = window.innerHeight;
+
+            var colors = ['#BF5CBE' , '#7F3D7F', '#FF7BFD' , '#401F3F' , '#E56FE4'];
+            // create 5 divs.
+            for (var i = 0 ; i < 5 ; i++){
+                var div = document.createElement('div');
+                div.innerHTML = 'divs for scrolling project '+ i;
+                div.style.backgroundColor = colors[i]; // apply the colors
+                div.style.height = heights + "px"; // apply the height.
+                document.body.appendChild(div);
+            }
+
+            var div = document.getElementById('scroller');
+
+            for (var j = 0 ; j < div.children.length ; j ++){
+                console.log ('div length = ' + div.children.length );
+                //var height = window.innerHeight;
+                div.children[j].onclick = function(event) {
+                    var index = children.indexOf(event.currentTarget);
+                    var height = window.innerHeight;
+                    window.scrollTo(0,(height * index));
+                }
+            }
+
+        };
+    </script>
+</head>
+<body>
+<div id="scroller">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+</body>
+</html>

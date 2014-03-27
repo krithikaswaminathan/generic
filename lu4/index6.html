@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Info</title>
+    <script type="text/javascript" src= "js/state.js"></script>
+    <script type="text/javascript">
+
+        window.onload = function(){
+
+            var select = document.getElementById('county');
+            cal_county.forEach(function(elem,index){
+                var option = document.createElement('option');
+                option.text = elem.name;
+                option.value = index;
+                select.appendChild(option);
+            });
+
+            select.onchange = function(event){
+                //console.dir(event);
+                var latitude = cal_county[event.currentTarget.selectedIndex].primary_latitude;
+                var longitude = cal_county[event.currentTarget.selectedIndex].primary_longitude;
+                console.log ("latitude of " + latitude);
+                console.log("longitude of " + longitude);
+
+                var xhr = new XMLHttpRequest(); // creating a new object and getting some info about the object
+                console.log (xhr);
+                var url = 'http://api.openweathermap.org/data/2.5/forecast/daily?lat=' + latitude + '&lon=' + longitude + '&cnt=10&mode=json';
+                console.log(url);
+                xhr.open('GET', url);
+              //  xhr.setRequestHeader('Content-Type', 'application/json');
+
+                xhr.onreadystatechange = function(){
+
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200){
+
+                            var obj = JSON.parse(xhr.responseText);
+                            console.dir(obj);
+                            displayWeatherData(obj);
+
+
+                        }
+                    }
+
+                };
+
+                xhr.send();
+            };
+
+            function displayWeatherData(obj){
+
+                var div = document.createElement('div');
+                document.body.appendChild(div);
+                div.innerHTML = '';
+
+                for (var i = 0 ; i < obj.list.length; i++){
+
+                    // Create a span element
+                    console.dir ('obj =' + obj);
+                    var span = document.createElement('span');
+                    span.innerHTML = obj.list[i].weather[0].description;
+                    div.appendChild(span);
+
+                    // create the image element
+                    var img_src = 'http://openweathermap.org/img/w/' + obj.list[i].weather[0].icon + '.png';
+                    var img = document.createElement('img');
+                    img.src = img_src;
+                    span.appendChild(img);
+                }
+
+            }
+
+        };
+
+
+
+    </script>
+</head>
+
+<body>
+<select name="CountyName" id="county"></select>
+</body>
+</html>

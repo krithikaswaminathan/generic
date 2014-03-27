@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript">
+        var Counter = (function() {
+            var privateCounter = 0;
+            function changeBy(val) {
+                privateCounter += val;
+            }
+            return {
+                increment: function() {
+                    changeBy(1);
+                },
+                decrement: function() {
+                    changeBy(-1);
+                },
+                value: function() {
+                    return privateCounter;
+                }
+            };
+        })();
+
+        alert(Counter.increment);
+
+
+        /*test();
+        // immediate function - define and execute in one shot.
+        (function (){
+            //console.log('text');
+        }());
+
+        //console.log(x);
+
+        // normal funciton declaration.  The whole function gets hoisted to the top.
+        function test() {
+            var counter = 0;
+            function foram(){
+                return ++counter;
+            }
+            return foram;
+
+            // another way of thinking about this is
+            *//* var counter = 0;
+            return function () {
+                return ++ counter;
+                };
+             *//*
+
+
+
+            alert(counter.increment);
+        }
+
+        var x = 32; // it only hoists the declaration of x and not the value.  so var x is only hoisted and not the value of x  = 32;
+
+        var x = test();
+        alert(x());*/
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
